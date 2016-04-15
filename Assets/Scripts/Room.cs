@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 [Serializable]
-
+//Структура комнаты
 public struct Room {
 	[MultilineAttribute(2)]
 	public string WelcomeText;
