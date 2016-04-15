@@ -115,7 +115,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -24}
-  m_SizeDelta: {x: 750, y: 70}
+  m_SizeDelta: {x: 800, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1132572728
 GameObject:
@@ -149,6 +149,7 @@ MonoBehaviour:
   ButtonsContainer: {fileID: 947019167}
   GameMap: {fileID: 11457076, guid: 25004cd534cc34695b25ec7becf430cc, type: 2}
   GameCanvas: {fileID: 1771224961}
+  ButtonDistance: 10
 --- !u!4 &1132572730
 Transform:
   m_ObjectHideFlags: 0

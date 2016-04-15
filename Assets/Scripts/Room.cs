@@ -17,5 +17,8 @@ public struct RoomElement {
 	public string Description;
 	public bool IsDoorOpen;
 	public int DoorLink;
+	public string ClosedDoorText;
+
 }
+
 public enum ElementType {door, window, weapon, furniture};

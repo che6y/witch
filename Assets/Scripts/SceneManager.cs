@@ -44,12 +44,13 @@ public class SceneManager : MonoBehaviour {
 		DeleteButtons();
 		Txt.text = GameMap.Rooms [currentRoom].RoomElements[elementIndex].Description;
 		ElementType elementType =  GameMap.Rooms [currentRoom].RoomElements[elementIndex].Type;
-		int bAmount = 1;
+		//int bAmount = 1;
 		switch (elementType)
 		{
 			case ElementType.door:
-				bAmount = 2;
-				MakeButton("Зайти", 2, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (GameMap.Rooms [currentRoom].RoomElements[elementIndex].DoorLink) );
+				//bAmount = 2;
+				OpenDoor(GameMap.Rooms [currentRoom].RoomElements[elementIndex]);
+				//MakeButton("Зайти", 2, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (GameMap.Rooms [currentRoom].RoomElements[elementIndex].DoorLink) );
 				break;
 			case ElementType.window:
 				break;
@@ -57,8 +58,11 @@ public class SceneManager : MonoBehaviour {
 				break;
 			case ElementType.furniture:
 				break;
+			default :
+				MakeButton("Вернуться", 1,0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
+				break;
 		}
-		MakeButton("Вернуться", bAmount, bAmount-1).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
+		
 	}
     // TODO Удалить
     void AddListenetToButton(Button but, int index){
@@ -80,6 +84,18 @@ public class SceneManager : MonoBehaviour {
 		tempButton.GetComponent<RectTransform>().localPosition = new Vector3(
 				(-buttonContainerWidth + buttonWidth) / 2 + (ButtonDistance + buttonWidth) * bNumber, 0, 0);
         return tempButton;
+	}
+	
+	void OpenDoor(RoomElement door) {
+		if (door.IsDoorOpen) {
+			
+			MakeButton("Зайти", 2, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (door.DoorLink) );
+			MakeButton("Вернуться", 2, 1).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
+		} else {
+			
+			Txt.text = door.ClosedDoorText;
+			MakeButton("Вернуться", 1, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
+		}
 	}
 
 }
