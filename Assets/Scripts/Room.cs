@@ -13,8 +13,9 @@ public struct Room {
 [Serializable]
 public struct RoomElement {
 	public string ButtonTag;
+	public ElementType Type;
 	public string Description;
-
+	public bool IsDoorOpen;
+	public int DoorLink;
 }
-
-//public enum ElementType {door, window, weapon, furniture};
+public enum ElementType {door, window, weapon, furniture};

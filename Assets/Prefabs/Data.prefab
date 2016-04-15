@@ -43,7 +43,9 @@ MonoBehaviour:
   - WelcomeText: 'Intro. Some text
 
 '
-    RoomElements: []
+    RoomElements:
+    - ButtonTag: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
+      Description: 
   - WelcomeText: "\u0412\u044B \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0435\u0441\u044C
       \u0432 \u0442\u044E\u0440\u0435\u043C\u043D\u043E\u0439 \u043A\u0430\u043C\u0435\u0440\u0435.\n\u0412
       \u043D\u0435\u0439 \u0435\u0441\u0442\u044C \u043E\u043A\u043D\u043E \u0438
