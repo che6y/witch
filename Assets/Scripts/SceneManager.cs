@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
 public class SceneManager : MonoBehaviour {
 	public Room FirstRoom;
 	public Text Txt;
@@ -32,7 +31,6 @@ public class SceneManager : MonoBehaviour {
 			butt.GetComponent<Button> ().onClick.AddListener (() => UsingElement(element));
 		}
 	}
-    
 	void UsingElement(RoomElement element){
 		DeleteButtons();
 		Txt.text = element.Description;
@@ -58,13 +56,11 @@ public class SceneManager : MonoBehaviour {
 				MakeButton("Вернуться", 1,0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
 				break;
 		}
-		
 	}
 	void DeleteButtons(){
 		Button[] buttons = GameCanvas.GetComponentsInChildren<Button> ();
 		foreach (var b in buttons) {
 			Destroy (b.gameObject);
-			Destroy (b);
 		}
 	}
 	GameObject MakeButton (string txt, int bAmount = 1, int bNumber = 0) {
