@@ -1,62 +1,58 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Collections;
 
 public class SceneManager : MonoBehaviour {
-	
+	public Room FirstRoom;
 	public Text Txt;
 	public GameObject Button;
 	public GameObject ButtonsContainer;
-	public Data GameMap;
+	public Map GameMap;
 	public Canvas GameCanvas;
 	public float ButtonDistance = 10f;
-	private int currentRoom;
+	private Room currentRoom;
 	private float buttonWidth;
-
 	void Start () {
 		buttonWidth = Button.GetComponent<RectTransform> ().rect.width;
-		EnterToTheRoom (0);
+		EnterToTheRoom (FirstRoom);
 	}
-
 	void Update () {
 	}
-	void EnterToTheRoom(int roomIndex){
-		currentRoom = roomIndex;
-		Txt.text = GameMap.Rooms [roomIndex].WelcomeText;
-		if (GameMap.Rooms [roomIndex].RoomElements.Length == 0) {
-			MakeButton("Продолжить").GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (roomIndex + 1) );
-		} else {
-			WalkingAround();
-		}
+	void EnterToTheRoom(Room room){
+		currentRoom = room;
+		Txt.text = room.WelcomeText;
+		WalkingAround();
 	}
-
 	public void WalkingAround(){
 		DeleteButtons ();
-		int bAmount = GameMap.Rooms [currentRoom].RoomElements.Length;
+		Txt.text = currentRoom.WelcomeText;
+		int bAmount = currentRoom.RoomElements.Length;
 		for (int i = 0; i < bAmount; i++) {
-			var butt = MakeButton(GameMap.Rooms [currentRoom].RoomElements[i].ButtonTag, bAmount, i);
-			AddListenetToButton (butt.GetComponent<Button> (), i);
+			var butt = MakeButton(currentRoom.RoomElements[i].ButtonTag, bAmount, i);
+			var element = currentRoom.RoomElements[i];
+			butt.GetComponent<Button> ().onClick.AddListener (() => UsingElement(element));
 		}
 	}
-
-	void UsingElement(int elementIndex){
+    
+	void UsingElement(RoomElement element){
 		DeleteButtons();
-		Txt.text = GameMap.Rooms [currentRoom].RoomElements[elementIndex].Description;
-		ElementType elementType =  GameMap.Rooms [currentRoom].RoomElements[elementIndex].Type;
-		//int bAmount = 1;
+		Txt.text = element.Description;
+		string elementType = element.GetType().ToString();
 		switch (elementType)
 		{
-			case ElementType.door:
-				//bAmount = 2;
-				OpenDoor(GameMap.Rooms [currentRoom].RoomElements[elementIndex]);
-				//MakeButton("Зайти", 2, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (GameMap.Rooms [currentRoom].RoomElements[elementIndex].DoorLink) );
+			case "Continue":
+				Continue cont = element as Continue;
+				EnterToTheRoom(cont.Link);
 				break;
-			case ElementType.window:
+			case "Door":
+				OpenDoor(element as Door);
 				break;
-			case ElementType.weapon:
+			case "Window":
+				MakeButton("Вернуться", 1,0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
 				break;
-			case ElementType.furniture:
+			case "Weapon":
+				break;
+			case "Furniture":
+				MakeButton("Вернуться", 1,0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
 				break;
 			default :
 				MakeButton("Вернуться", 1,0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
@@ -64,11 +60,6 @@ public class SceneManager : MonoBehaviour {
 		}
 		
 	}
-    // TODO Удалить
-    void AddListenetToButton(Button but, int index){
-		but.onClick.AddListener ( () => UsingElement(index) );
-	}
-
 	void DeleteButtons(){
 		Button[] buttons = GameCanvas.GetComponentsInChildren<Button> ();
 		foreach (var b in buttons) {
@@ -85,15 +76,12 @@ public class SceneManager : MonoBehaviour {
 				(-buttonContainerWidth + buttonWidth) / 2 + (ButtonDistance + buttonWidth) * bNumber, 0, 0);
         return tempButton;
 	}
-	
-	void OpenDoor(RoomElement door) {
+	void OpenDoor(Door door) {
 		if (door.IsDoorOpen) {
-			
-			MakeButton("Зайти", 2, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (door.DoorLink) );
+			MakeButton("Зайти", 2, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (door.Link) );
 			MakeButton("Вернуться", 2, 1).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
 		} else {
-			
-			Txt.text = door.ClosedDoorText;
+			Txt.text = door.ClosedDescription;
 			MakeButton("Вернуться", 1, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
 		}
 	}

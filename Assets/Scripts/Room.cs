@@ -1,24 +1,13 @@
-﻿using System;
-using UnityEditor;
-using UnityEngine;
-[Serializable]
-//Структура комнаты
-public struct Room {
-	[MultilineAttribute(2)]
-	public string WelcomeText;
-	public RoomElement[] RoomElements;
+﻿using UnityEngine;
+//using System.Collections;
+//using System;
 
+
+[CreateAssetMenu(fileName = "Room", menuName = "Witch/Room", order = 1)]
+public class Room : ScriptableObject {
+	
+		public string WelcomeText;
+		public RoomElement[] RoomElements;
+
+	
 }
-
-[Serializable]
-public struct RoomElement {
-	public string ButtonTag;
-	public ElementType Type;
-	public string Description;
-	public bool IsDoorOpen;
-	public int DoorLink;
-	public string ClosedDoorText;
-
-}
-
-public enum ElementType {door, window, weapon, furniture};

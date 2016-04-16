@@ -49,40 +49,13 @@ MonoBehaviour:
       \u043D\u0435\u0439 \u0435\u0441\u0442\u044C \u043E\u043A\u043D\u043E \u0438
       \u0434\u0432\u0435\u0440\u044C."
     RoomElements:
-    - ButtonTag: Door
-      Type: 0
-      Description: "\u0422\u043E\u043B\u0441\u0442\u0430\u044F \u0434\u0443\u0431\u043E\u0432\u0430\u044F
-        \u0434\u0432\u0435\u0440\u044C \u0441 \u043C\u0430\u043B\u0435\u043D\u044C\u043A\u0438\u043C
-        \u0437\u0430\u0440\u0435\u0448\u043E\u0447\u0435\u043D\u044B\u043C \u043E\u043A\u043D\u043E\u043C"
-      IsDoorOpen: 1
-      DoorLink: 2
-      ClosedDoorText: "\u0414\u0432\u0435\u0440\u044C \u0437\u0430\u043A\u0440\u044B\u0442\u0430!
-        \u0412\u0430\u043C \u043D\u0443\u0436\u0435\u043D \u043A\u043B\u044E\u0447!"
-    - ButtonTag: Window
-      Type: 1
-      Description: "\u041C\u0430\u043B\u0435\u043D\u044C\u043A\u043E\u0435 \u043E\u043A\u043D\u043E
-        \u0432 \u0442\u0440\u0435\u0445 \u043C\u0435\u0442\u0440\u0430\u0445 \u043E\u0442
-        \u043F\u043E\u043B\u0430"
-      IsDoorOpen: 0
-      DoorLink: 0
-      ClosedDoorText: 
-    - ButtonTag: Bed
-      Type: 3
-      Description: "\u0412\u0435\u0442\u0445\u0438\u0439 \u0441\u043E\u043B\u043E\u043C\u0435\u043D\u043D\u044B\u0439
-        \u043C\u0430\u0442\u0440\u0430\u0441"
-      IsDoorOpen: 0
-      DoorLink: 0
-      ClosedDoorText: 
+    - {fileID: 159056, guid: 74e2f40a539404f4295f4d9e0a34e28e, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
   - WelcomeText: "\u0412\u044B \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0435\u0441\u044C
       \u0432 \u043A\u043E\u0440\u0438\u0434\u043E\u0440\u0435"
     RoomElements:
-    - ButtonTag: Door
-      Type: 0
-      Description: "\u0414\u0432\u0435\u0440\u044C \u0447\u0435\u0440\u0435\u0437
-        \u043A\u043E\u0442\u043E\u0440\u0443\u044E \u0432\u044B \u043F\u0440\u0438\u0448\u043B\u0438"
-      IsDoorOpen: 1
-      DoorLink: 1
-      ClosedDoorText: 
+    - {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

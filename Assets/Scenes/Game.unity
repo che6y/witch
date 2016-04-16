@@ -144,10 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d277ff175b884d1cb1be8ddf0178695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FirstRoom: {fileID: 11400000, guid: 012e5c0e210fe47028ecee704d6b0bd2, type: 2}
   Txt: {fileID: 2128506168}
   Button: {fileID: 112532, guid: 264bd886b6fb74443862d812b8a81128, type: 2}
   ButtonsContainer: {fileID: 947019167}
-  GameMap: {fileID: 11457076, guid: 25004cd534cc34695b25ec7becf430cc, type: 2}
+  GameMap: {fileID: 11400000, guid: 8866ecb0a43364ce7b89ec83aae20fc6, type: 2}
   GameCanvas: {fileID: 1771224961}
   ButtonDistance: 10
 --- !u!4 &1132572730
@@ -157,7 +158,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1132572728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.55688214, y: 0.338606, z: 0.030444534}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
