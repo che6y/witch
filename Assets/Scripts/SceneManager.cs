@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Collections.Generic;
 public class SceneManager : MonoBehaviour {
 	public Room FirstRoom;
 	public Text Txt;
 	public GameObject Button;
 	public GameObject ButtonsContainer;
-	public Map GameMap;
 	public Canvas GameCanvas;
 	public float ButtonDistance = 10f;
 	private Room currentRoom;
 	private float buttonWidth;
+	public List<InventoryItem> playerPocket = new List<InventoryItem>();
 	void Start () {
 		buttonWidth = Button.GetComponent<RectTransform> ().rect.width;
 		EnterToTheRoom (FirstRoom);
-	}
-	void Update () {
 	}
 	void EnterToTheRoom(Room room){
 		currentRoom = room;
@@ -45,15 +45,14 @@ public class SceneManager : MonoBehaviour {
 				OpenDoor(element as Door);
 				break;
 			case "Window":
-				MakeButton("Вернуться", 1,0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
-				break;
-			case "Weapon":
+				MakeButton("Вернуться", 1, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
 				break;
 			case "Furniture":
-				MakeButton("Вернуться", 1,0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
+				MakeButton("Заглянуть", 2, 0).GetComponent<Button> ().onClick.AddListener ( () => LookInsideFurniture (element as Furniture) );
+				MakeButton("Вернуться", 2, 1).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
 				break;
 			default :
-				MakeButton("Вернуться", 1,0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
+				MakeButton("Вернуться", 1, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
 				break;
 		}
 	}
@@ -81,5 +80,29 @@ public class SceneManager : MonoBehaviour {
 			MakeButton("Вернуться", 1, 0).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
 		}
 	}
-
+	void LookInsideFurniture (Furniture furniture) {
+		DeleteButtons();
+		var text = "Вы увидели ";
+		var divider = "";
+		if (furniture.InventoryItems.Length > 1)
+			divider = ", ";
+		foreach ( var item in furniture.InventoryItems)
+		{
+			text += item.Description + divider;
+		}
+		Txt.text = text;
+		MakeButton("Взять", 2, 0).GetComponent<Button> ().onClick.AddListener ( () => TakeAnItems (furniture.InventoryItems) );
+		MakeButton("Вернуться", 2, 1).GetComponent<Button> ().onClick.AddListener ( () => EnterToTheRoom (currentRoom) );
+	}
+	void TakeAnItems(InventoryItem[] items) {
+		foreach (InventoryItem item in items)
+		{
+			playerPocket.Add(item);
+		}
+		Array.Clear (items, 0, items.Length); 
+		
+		foreach (InventoryItem item in playerPocket) {
+			Debug.Log(item.Description);
+		}
+	}
 }

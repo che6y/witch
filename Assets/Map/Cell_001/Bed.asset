@@ -14,3 +14,7 @@ MonoBehaviour:
   ButtonTag: Bed
   Description: "\u0421\u0442\u0430\u0440\u044B\u0439 \u043F\u043E\u0442\u0440\u0435\u043F\u0430\u043D\u044B\u0439
     \u0441\u043E\u043B\u043E\u043C\u0435\u043D\u043D\u044B\u0439 \u043C\u0430\u0442\u0440\u0430\u0441"
+  IsOpen: 0
+  InventoryItems:
+  - {fileID: 0}
+  - {fileID: 0}

@@ -48,11 +48,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Gui.cs" />
      <Compile Include="Assets\Scripts\Continue.cs" />
      <Compile Include="Assets\Scripts\Data.cs" />
      <Compile Include="Assets\Scripts\Door.cs" />
      <Compile Include="Assets\Scripts\Furniture.cs" />
-     <Compile Include="Assets\Scripts\Map.cs" />
+     <Compile Include="Assets\Scripts\InventoryItem.cs" />
+     <Compile Include="Assets\Scripts\InventoryItemContainer.cs" />
+     <Compile Include="Assets\Scripts\KeyForSomething.cs" />
+     <Compile Include="Assets\Scripts\MapClass.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Room.cs" />
      <Compile Include="Assets\Scripts\RoomElement.cs" />
      <Compile Include="Assets\Scripts\SceneManager.cs" />

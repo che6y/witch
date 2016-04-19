@@ -9,5 +9,5 @@ public class Door : RoomElement {
 	public Room Link;
 	public bool IsDoorOpen;
 	public string ClosedDescription;
-	
+	public KeyForSomething Key;
 }
